@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import Vuelidate from 'vuelidate';
+import VueAnalytics from 'vue-analytics';
 import App from './App';
 import router from './router';
 
@@ -10,6 +11,10 @@ import('../node_modules/vuetify/dist/vuetify.min.css');
 
 Vue.use(Vuetify);
 Vue.use(Vuelidate);
+Vue.use(VueAnalytics, {
+  id: process.env.GOOGLE_ANALYTICS_KEY,
+  router,
+});
 
 Vue.config.productionTip = false;
 
