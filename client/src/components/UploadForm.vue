@@ -1,7 +1,7 @@
 <template>
   <form class="upload">
-    <file-input v-model="form.file" @formData="getFile" :error-messages="fileErrors" />
-    
+    <file-input v-model="form.file" @selected="getFiles" :error-messages="fileErrors" />
+
     <v-menu
       lazy
       :close-on-content-click="false"
@@ -35,7 +35,7 @@
         </template>
       </v-date-picker>
     </v-menu>
-    
+
     <div class="padded mb-3 pt-3">
       <v-checkbox
         label="Single day"
@@ -44,7 +44,7 @@
         persistent-hint>
       </v-checkbox>
     </div>
-    
+
     <v-menu
       lazy
       :close-on-content-click="false"
@@ -159,13 +159,13 @@ export default {
       const [day, month, year] = date.split('/')
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     },
-    getFile (formData) {
-      // Rename file
-      this.formData.set('statement', formData[0].get('data'))
+    getFiles (files) {
+      // Add file to formData
+      this.formData.append('statement', files[0])
     },
     submit () {
       this.$v.$touch()
-      
+
       if (!this.$v.$invalid) {
         Object.keys(this.form).forEach(key => {
           if (key !== 'file' && !!this.form[key]) this.formData.append(key, this.form[key])

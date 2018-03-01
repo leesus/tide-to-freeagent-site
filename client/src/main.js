@@ -7,7 +7,7 @@ import VueAnalytics from 'vue-analytics';
 import App from './App';
 import router from './router';
 
-import('../node_modules/vuetify/dist/vuetify.min.css');
+import '../node_modules/vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);
 Vue.use(Vuelidate);
